@@ -246,6 +246,7 @@ def test_find_all_next(soup):
 	# 0 : <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>
 	# 1 : <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>
 	# 2 : <p class="story">...</p>
+	
 
 #############################################
 

@@ -1,3 +1,5 @@
+#coding=utf-8
+
 from bs4 import BeautifulSoup
 from bs4 import element
 import re
@@ -98,7 +100,7 @@ def test_select_with_attr(soup):
 	# 1 : <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>
 	# 2 : <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>
 
-	print("--- Demo: `[class='sister'][id=link2]` --- ")
+	print("--- Demo: `[class=sister][id=link2]` --- ")
 	print_result(soup.select("[class=sister][id=link2]"))
 	# 0 : <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>
 
@@ -243,6 +245,29 @@ def test_select_one(soup):
 	# <a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>
 
 #############################################
+# 8. get attribute value
+# `.get_text()`,`.attrs['...']`
+#############################################
+
+def test_get_attribute_value(soup):
+	print('--- Demo: `get attribute value` ---')
+	result=soup.select(".sister")
+
+	print_result(result)
+	# 0 : <a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>
+	# 1 : <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>
+	# 2 : <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>
+	
+	print(result[0].get_text())
+	#Elsie
+
+	print(result[0].attrs)
+	#{'href': 'http://example.com/elsie', 'class': ['sister'], 'id': 'link1'}
+	
+	print(result[0].attrs['id'])
+	#link1
+
+#############################################
 
 if __name__=='__main__':
 	content='''
@@ -327,6 +352,12 @@ if __name__=='__main__':
 	#############################################
 	test_select_multi(soup)
 	test_select_one(soup)
+
+	#############################################
+	# 8. get attribute value
+	# `.get_text()`,`.attrs['...']`
+	#############################################
+	test_get_attribute_value(soup)
 
 	print('end!')
 
